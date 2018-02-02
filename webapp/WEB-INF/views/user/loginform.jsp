@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/mysite/assets/css/user.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 	<title>Login Page</title>
 </head>
 <body>
@@ -20,9 +20,7 @@
 			<div id="content">
 				<div id="user">
 					
-					<form id="login-form" name="loginform" method="post" action="user">
-						<input type="hidden" name="a" value="login" /> 
-						
+					<form id="login-form" name="loginform" method="post" action="${pageContext.request.contextPath}/user/login">
 						<label class="block-label" for="email">이메일</label> 
 						<input id="email" name="email" type="text" value=""> 
 
