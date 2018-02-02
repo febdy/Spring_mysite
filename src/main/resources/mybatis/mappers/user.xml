@@ -11,5 +11,21 @@
 		AND password = #{password}
         ]]>
 	</select>
+	
+	<select id="selectUserByNo" parameterType="int" resultType="com.javaex.vo.UserVo">
+	<![CDATA[
+		SELECT no, name, email, password, gender
+		FROM users 
+		WHERE no = #{no}
+        ]]>
+	</select>
+	
+	<update id="modify" parameterType="com.javaex.vo.UserVo">
+	<![CDATA[
+		UPDATE users
+		SET name = #{name}, password = #{password}, gender = #{gender}
+		WHERE no = #{no}	
+	]]>
+	</update>
 
 </mapper>

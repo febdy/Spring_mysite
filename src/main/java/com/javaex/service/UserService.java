@@ -16,5 +16,22 @@ public class UserService {
 
 		return userDao.getUser(email, password);
 	}
+	
+	public UserVo getUser(int no) {
+		
+		return userDao.getUser(no);
+	}
 
+	public void modify(UserVo authUser, UserVo newUserVo) {
+		if(authUser.getNo() == newUserVo.getNo()) {
+			UserVo userVo = userDao.getUser(authUser.getNo());
+			
+			userVo.setName(newUserVo.getName());
+			if(newUserVo.getPassword() != "")
+				userVo.setPassword(newUserVo.getPassword());
+			userVo.setGender(newUserVo.getGender());
+			
+			userDao.modify(userVo);
+		}
+	}
 }

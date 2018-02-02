@@ -3,9 +3,9 @@
 
 <div id="navigation">
 	<ul>
-		<li><a href="main">메인</a></li>
-		<li><a href="guestbook?a=list">방명록</a></li>
-		<li><a href="board?a=list">게시판</a></li>
+		<li><a href="${pageContext.request.contextPath}/main">메인</a></li>
+		<li><a href="${pageContext.request.contextPath}/guestbook">방명록</a></li>
+		<li><a href="${pageContext.request.contextPath}/board">게시판</a></li>
 	</ul>
 </div>
 <!-- /navigation -->

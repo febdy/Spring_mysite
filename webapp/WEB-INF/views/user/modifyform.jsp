@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/mysite/assets/css/user.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 	<title>Insert title here</title>
 </head>
 <body>
@@ -20,8 +20,7 @@
 			<div id="content">
 				<div id="user">
 	
-					<form id="join-form" name="joinForm" method="post" action="user">
-
+					<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath}/user/modify">
 						<label class="block-label" for="name">이름</label>
 						<input id="name" name="name" type="text" value="${userVo.name}" />
 	
@@ -47,10 +46,9 @@
 						</fieldset>
 
 						<input type="hidden" name="no" value="${userVo.no}">
-						<input type="hidden" name="a" value="modify">
-						<input type="submit" value="수정완료">
-						
+						<input type="submit" value="수정완료">						
 					</form>
+					
 				</div><!-- /user -->
 			</div><!-- /content -->
 		</div><!-- /wrapper -->

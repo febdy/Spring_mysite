@@ -8,13 +8,13 @@
 		<c:choose>
 			<c:when test="${empty authUser}">
 				<!-- 로그인 전 -->
-				<li><a href="user?a=loginform">로그인</a></li>
-				<li><a href="user?a=joinform">회원가입</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/loginform">로그인</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/joinform">회원가입</a></li>
 			</c:when>
 			<c:otherwise>
 				<!-- 로그인 후 -->
-				<li><a href="user?a=modifyform">회원정보수정</a></li>
-				<li><a href="user?a=logout">로그아웃</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/modifyform">회원정보수정</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 				<li>${authUser.name}님 안녕하세요^^;</li> <!-- ${sessionScope.authUser.name }  -->
 			</c:otherwise>
 		</c:choose>

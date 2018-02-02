@@ -22,4 +22,14 @@ public class UserDao {
 
 		return sqlSession.selectOne("user.selectUserByEmailPw", map);
 	}
+	
+	public UserVo getUser(int no) {
+	
+		return sqlSession.selectOne("user.selectUserByNo", no);
+	}
+	
+	public void modify(UserVo userVo) {
+		sqlSession.update("user.modify", userVo);
+	}
+	
 }
