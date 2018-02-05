@@ -22,9 +22,17 @@ public class BoardController {
 	private BoardService boardService;
 
 	@RequestMapping("/board/list")
-	public String list(Model model) {
-		List<BoardVo> bList = boardService.getList();
+	public String list(@RequestParam(value = "page", required = false, defaultValue = "-1") int page, Model model) {
+		if (page == -1)
+			page = 1;
+
+		List<BoardVo> bList = boardService.getList(page);
+		int maxPageNum = boardService.getMaxPageNum();
+
 		model.addAttribute("bList", bList);
+		model.addAttribute("maxPageNum", maxPageNum);
+		model.addAttribute("page", page);
+		model.addAttribute("type", "list");
 
 		return "board/list";
 	}

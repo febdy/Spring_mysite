@@ -47,26 +47,26 @@
 				</table>
 				
 				<div class="pager">
-					<c:if test="${where == 'list'}">				
+					<c:if test="${type == 'list'}">				
 						<ul>
 							<c:if test="${page > 1}">
-								<li><a href="board?a=list&page=1">◀</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/list?page=1">◀</a></li>
 							</c:if>
 							<c:if test="${page <= 1}">
 								<li>◀</li>
 							</c:if>
 						
 							<c:forEach var="i" begin="1" end="${maxPageNum}" step="1">
-								<c:if test="${page == i}}}">
-									<li class="selected"><a href="board?a=list&page=${i}">${numOfPageBundle} + i</a></li>
+								<c:if test="${page == i}">
+									<li class="selected"><a href="${pageContext.request.contextPath}/board/list?page=${i}">${i}</a></li>
 								</c:if>
-								<c:if test="${page != i}}">
-									<li><a href="board?a=list&page=${i}">${numOfPageBundle + i}</a></li>
+								<c:if test="${page != i}">
+									<li><a href="${pageContext.request.contextPath}/board/list?page=${i}">${i}</a></li>
 								</c:if>
 							</c:forEach>
 	
 							<c:if test="${page < maxPageNum}">
-								<li><a href="board?a=list&page=${maxPageNum}">▶</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/list?page=${maxPageNum}">▶</a></li>
 							</c:if>
 							<c:if test="${page >= maxPageNum}">
 								<li>▶</li>
@@ -74,7 +74,7 @@
 						</ul>
 					</c:if>
 					
-					<c:if test="${where == 'search'}">				
+					<c:if test="${type == 'search'}">				
 						<ul>
 							<c:if test="${page > 1}">
 								<li><a href="board?a=search&kwd=${kwd}&page=1">◀</a></li>

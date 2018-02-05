@@ -15,8 +15,22 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 
-	public List<BoardVo> getList() {
-		return boardDao.getList();
+	private final int numByPage = 5;
+
+	public List<BoardVo> getList(int page) {
+		int start = numByPage * (page - 1);
+		int end = numByPage * page;
+
+		return boardDao.getList(start, end);
+	}
+
+	public int getMaxPageNum() {
+		int maxPageNum = boardDao.getMaxPageNum();
+
+		if (maxPageNum % numByPage == 0)
+			return maxPageNum / numByPage;
+		else
+			return maxPageNum / numByPage + 1;
 	}
 
 	public BoardVo getArticle(int no) {
