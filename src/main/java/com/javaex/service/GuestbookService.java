@@ -14,13 +14,17 @@ public class GuestbookService {
 	@Autowired
 	private GuestbookDao guestbookDao;
 
-	public List<GuestVo> getList(){
+	public List<GuestVo> getList() {
 		List<GuestVo> gList = guestbookDao.getList();
-		
+
 		return gList;
 	}
-	
+
 	public void add(GuestVo guestVo) {
 		guestbookDao.add(guestVo);
+	}
+
+	public void delete(int no, String password) {
+		guestbookDao.delete(no, password);
 	}
 }

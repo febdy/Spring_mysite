@@ -53,7 +53,7 @@
 										<td>${gVo.no}</td>
 										<td>${gVo.name}</td>
 										<td>${gVo.date}</td>
-										<td><a href="guestbook?a=deleteform&no=${gVo.no}">삭제</a></td>
+										<td><a href="${pageContext.request.contextPath}/guestbook/deleteform?no=${gVo.no}">삭제</a></td>
 									</tr>
 									<tr>
 										<td colspan=4>

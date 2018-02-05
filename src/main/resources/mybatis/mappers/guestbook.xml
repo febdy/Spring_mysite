@@ -16,4 +16,12 @@
 		VALUES (seq_users_no.nextval, #{name}, #{password}, #{content}, sysdate)
 	]]>
 	</insert>
+	
+	<delete id="delete" parameterType="map">
+	<![CDATA[
+		DELETE FROM guestbook
+		WHERE no = #{no} AND password = #{password}
+	]]>
+	</delete>
+	
 </mapper>
