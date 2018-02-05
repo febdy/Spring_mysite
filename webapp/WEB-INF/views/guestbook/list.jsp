@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/mysite/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 	<title>Guestbook</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 			<div id="content">
 				<div id="guestbook">
 					
-					<form action="guestbook" method="post">
+					<form action="${pageContext.request.contextPath}/guestbook/add" method="post">
 						
 						<table>
 							<tr>
@@ -41,7 +41,6 @@
 								<td colspan=4><textarea name="content" id="content" placeholder="내용을 입력해주세요."></textarea></td>
 							</tr>
 							<tr>
-								<td><input type="hidden" name="a" value="add"></td>
 								<td colspan=4 align=right><input type="submit" VALUE=" 확인 " /></td>
 							</tr>
 						</table>

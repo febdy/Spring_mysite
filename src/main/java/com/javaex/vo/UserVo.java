@@ -1,7 +1,6 @@
 package com.javaex.vo;
 
 public class UserVo {
-
 	private int no;
 	private String name;
 	private String email;
