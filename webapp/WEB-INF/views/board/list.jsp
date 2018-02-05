@@ -17,8 +17,7 @@
 		
 		<div id="content">
 			<div id="board">
-				<form id="search_form" action="board" method="get">
-					<input type="hidden" name="a" value="search">
+				<form id="search_form" action="${pageContext.request.contextPath}/board/search" method="get">
 					<input type="text" id="kwd" name="kwd" value="">
 					<input type="submit" value="찾기">
 				</form>

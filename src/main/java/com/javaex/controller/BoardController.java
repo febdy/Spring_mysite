@@ -86,11 +86,19 @@ public class BoardController {
 	@RequestMapping("/board/delete")
 	public String delete(@RequestParam int no, @RequestParam int userNo, HttpSession session) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		
-		if((authUser != null) && (authUser.getNo() == userNo)) 
+
+		if ((authUser != null) && (authUser.getNo() == userNo))
 			boardService.delete(no);
 
 		return "redirect:/board/list";
+	}
+
+	@RequestMapping("/board/search")
+	public String search(@RequestParam String kwd, Model model) {
+		List<BoardVo> bList = boardService.search(kwd);
+		model.addAttribute("bList", bList);
+
+		return "board/list";
 	}
 
 }

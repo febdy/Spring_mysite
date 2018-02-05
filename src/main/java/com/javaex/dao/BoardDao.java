@@ -33,9 +33,13 @@ public class BoardDao {
 	public void write(BoardVo boardVo) {
 		sqlSession.insert("board.write", boardVo);
 	}
-	
+
 	public void delete(int no) {
 		sqlSession.delete("board.delete", no);
+	}
+
+	public List<BoardVo> search(String kwd) {
+		return sqlSession.selectList("board.search", "%" + kwd + "%");
 	}
 
 }

@@ -48,4 +48,8 @@ public class BoardService {
 	public void delete(int no) {
 		boardDao.delete(no);
 	}
+
+	public List<BoardVo> search(String kwd) {
+		return boardDao.search(kwd);
+	}
 }

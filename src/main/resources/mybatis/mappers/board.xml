@@ -27,7 +27,7 @@
 		WHERE no = #{no}
 	]]>
 	</update>
-	
+
 	<update id="modify" parameterType="com.javaex.vo.BoardVo">
 	<![CDATA[
 		UPDATE board
@@ -49,5 +49,16 @@
 		WHERE no = #{no}
 	]]>
 	</delete>
+
+	<select id="search" parameterType="string" resultType="com.javaex.vo.BoardVo">
+	<![CDATA[
+		SELECT board.no no, title, content, hit, 
+			   to_char(reg_date, 'YY-MM-DD HH:MM') "date", user_no "userNo", name  
+		FROM board, users 
+		WHERE board.user_no = users.no  
+		AND title LIKE #{kwd}
+		ORDER BY board.no DESC
+	]]>
+	</select>
 
 </mapper>
