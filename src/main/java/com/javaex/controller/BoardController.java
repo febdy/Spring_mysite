@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -22,6 +23,15 @@ public class BoardController {
 		model.addAttribute("bList", bList);
 		
 		return "board/list";
+	}
+	
+	@RequestMapping("/board/view")
+	public String view(@RequestParam int no, Model model) {
+		BoardVo article = boardService.getArticle(no);
+		model.addAttribute("boardVo", article);
+		model.addAttribute("no", no);
+		
+		return "board/view";
 	}
 
 }

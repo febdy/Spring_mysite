@@ -12,4 +12,14 @@
 	]]>
 	</select>
 
+	<select id="getArticle" resultType="com.javaex.vo.BoardVo">
+	<![CDATA[
+		SELECT no, title, content, hit, user_no userNo
+		FROM board
+		WHERE no = #{no}
+	]]>
+	</select>
+
+
+
 </mapper>

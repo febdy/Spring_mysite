@@ -17,4 +17,8 @@ public class BoardService {
 	public List<BoardVo> getList() {
 		return boardDao.getList();
 	}
+	
+	public BoardVo getArticle(int no) {
+		return boardDao.getArticle(no);
+	}
 }
