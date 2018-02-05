@@ -41,7 +41,7 @@
 							<td>${bVo.hit}</td>
 							<td>${bVo.date}</td>
 							<td><c:if test="${bVo.userNo == authUser.no}">
-								<a href="${pageContext.request.contextPath}/board/delete?no=${bVo.no}&userno=${bVo.userNo}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath}/board/delete?no=${bVo.no}&userNo=${bVo.userNo}" class="del">삭제</a>
 								</c:if></td>
 						</tr>
 					</c:forEach>					

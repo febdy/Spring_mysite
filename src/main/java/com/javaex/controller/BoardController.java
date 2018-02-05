@@ -67,4 +67,12 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
+	@RequestMapping("/board/delete")
+	public String delete(@RequestParam int no, @RequestParam int userNo, HttpSession session) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		boardService.delete(no, userNo, authUser);
+
+		return "redirect:/board/list";
+	}
+
 }
