@@ -6,7 +6,7 @@
 <head>
 	<title>mysite</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link href="/mysite/assets/css/board.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="container">
@@ -36,12 +36,12 @@
 					<c:forEach items="${bList}" var="bVo" varStatus="status">
 						<tr>
 							<td>${bVo.no}</td>
-							<td><a href="board?a=view&no=${bVo.no}">${bVo.title}</a></td>
+							<td><a href="${pageContext.request.contextPath}/board/view/no=${bVo.no}">${bVo.title}</a></td>
 							<td>${bVo.name}</td>
 							<td>${bVo.hit}</td>
 							<td>${bVo.date}</td>
 							<td><c:if test="${bVo.userNo == authUser.no}">
-								<a href="board?a=delete&no=${bVo.no}&userno=${bVo.userNo}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath}/board/delete?no=${bVo.no}&userno=${bVo.userNo}" class="del">삭제</a>
 								</c:if></td>
 						</tr>
 					</c:forEach>					
@@ -105,7 +105,7 @@
 
 				<div class="bottom">
 					<c:if test="${not empty authUser}">
-						<a href="board?a=writeform" id="new-book">글쓰기</a>
+						<a href="${pageContext.request.contextPath}/board/writeform" id="new-book">글쓰기</a>
 					</c:if>
 				</div>
 

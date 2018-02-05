@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<select id="getList" resultType="com.javaex.vo.BoardVo">
+	<![CDATA[
+		SELECT board.no no, title, content, hit,
+		to_char(reg_date, 'YY-MM-DD HH:MM') "date", user_no userNo, name
+		FROM board, users
+		WHERE board.user_no = users.no
+		ORDER BY board.no DESC
+	]]>
+	</select>
+
+</mapper>
