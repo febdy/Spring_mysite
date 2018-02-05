@@ -21,13 +21,17 @@ public class BoardDao {
 	public BoardVo getArticle(int no) {
 		return sqlSession.selectOne("board.getArticle", no);
 	}
-	
+
 	public void updateHit(int no) {
 		sqlSession.update("board.updateHit", no);
 	}
 
 	public void modify(BoardVo boardVo) {
 		sqlSession.update("board.modify", boardVo);
+	}
+
+	public void write(BoardVo boardVo) {
+		sqlSession.insert("board.write", boardVo);
 	}
 
 }

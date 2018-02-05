@@ -2,6 +2,8 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
 
 @Controller
 public class BoardController {
@@ -46,6 +49,20 @@ public class BoardController {
 	@RequestMapping("/board/modify")
 	public String modify(@ModelAttribute BoardVo boardVo) {
 		boardService.modify(boardVo);
+
+		return "redirect:/board/list";
+	}
+
+	@RequestMapping("/board/writeform")
+	public String writeform() {
+
+		return "board/write";
+	}
+
+	@RequestMapping("/board/write")
+	public String write(@ModelAttribute BoardVo boardVo, HttpSession session) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		boardService.write(boardVo, authUser);
 
 		return "redirect:/board/list";
 	}

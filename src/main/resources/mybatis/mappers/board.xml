@@ -20,22 +20,28 @@
 	]]>
 	</select>
 
-	<select id="updateHit" parameterType="int">
+	<update id="updateHit" parameterType="int">
 	<![CDATA[
 		UPDATE board
 		SET hit = hit + 1 
 		WHERE no = #{no}
 	]]>
-	</select>
+	</update>
 	
-	<select id="modify" parameterType="com.javaex.vo.BoardVo">
+	<update id="modify" parameterType="com.javaex.vo.BoardVo">
 	<![CDATA[
 		UPDATE board
 		SET title = #{title}, content = #{content}
 		WHERE no = #{no}
 	]]>
-	</select>
+	</update>
 
+	<insert id="write" parameterType="com.javaex.vo.BoardVo">
+	<![CDATA[
+		INSERT INTO board
+		VALUES (seq_article_no.nextval, #{title}, #{content}, 0, sysdate, #{userNo})
+	]]>
+	</insert>
 
 
 </mapper>

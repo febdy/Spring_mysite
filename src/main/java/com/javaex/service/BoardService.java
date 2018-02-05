@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BoardDao;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
 
 @Service
 public class BoardService {
@@ -21,11 +22,11 @@ public class BoardService {
 	public BoardVo getArticle(int no) {
 		return boardDao.getArticle(no);
 	}
-	
+
 	public BoardVo view(int no) {
 		BoardVo boardVo = getArticle(no);
 		boardDao.updateHit(no);
-		
+
 		return boardVo;
 	}
 
@@ -36,5 +37,11 @@ public class BoardService {
 		boardVo.setContent(newContent);
 
 		boardDao.modify(boardVo);
+	}
+
+	public void write(BoardVo boardVo, UserVo authUser) {
+		boardVo.setUserNo(authUser.getNo());
+		boardVo.setName(authUser.getName());
+		boardDao.write(boardVo);
 	}
 }
