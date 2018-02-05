@@ -44,10 +44,8 @@ public class BoardService {
 		boardVo.setName(authUser.getName());
 		boardDao.write(boardVo);
 	}
-	
-	public void delete(int no, int userNo, UserVo authUser) {
-		if(userNo == authUser.getNo()) {
-			boardDao.delete(no);
-		}
+
+	public void delete(int no) {
+		boardDao.delete(no);
 	}
 }

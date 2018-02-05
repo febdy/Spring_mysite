@@ -39,22 +39,34 @@ public class BoardController {
 	}
 
 	@RequestMapping("/board/modifyform")
-	public String modifyform(@RequestParam int no, Model model) {
+	public String modifyform(@RequestParam int no, Model model, HttpSession session) {
 		BoardVo article = boardService.getArticle(no);
-		model.addAttribute("boardVo", article);
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		return "board/modify";
+		if ((authUser != null) && (authUser.getNo() == article.getUserNo())) {
+			model.addAttribute("boardVo", article);
+
+			return "board/modify";
+		} else
+			return "redirect:/board/list";
 	}
 
 	@RequestMapping("/board/modify")
-	public String modify(@ModelAttribute BoardVo boardVo) {
-		boardService.modify(boardVo);
+	public String modify(@ModelAttribute BoardVo boardVo, HttpSession session) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		if ((authUser != null) && (authUser.getNo() == boardVo.getUserNo()))
+			boardService.modify(boardVo);
 
 		return "redirect:/board/list";
 	}
 
 	@RequestMapping("/board/writeform")
-	public String writeform() {
+	public String writeform(HttpSession session) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		if (authUser == null)
+			return "redirect:/board/list";
 
 		return "board/write";
 	}
@@ -62,6 +74,10 @@ public class BoardController {
 	@RequestMapping("/board/write")
 	public String write(@ModelAttribute BoardVo boardVo, HttpSession session) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		if (authUser == null)
+			return "redirect:/board/list";
+
 		boardService.write(boardVo, authUser);
 
 		return "redirect:/board/list";
@@ -70,7 +86,9 @@ public class BoardController {
 	@RequestMapping("/board/delete")
 	public String delete(@RequestParam int no, @RequestParam int userNo, HttpSession session) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		boardService.delete(no, userNo, authUser);
+		
+		if((authUser != null) && (authUser.getNo() == userNo)) 
+			boardService.delete(no);
 
 		return "redirect:/board/list";
 	}
