@@ -17,9 +17,13 @@ public class BoardDao {
 	public List<BoardVo> getList() {
 		return sqlSession.selectList("board.getList");
 	}
-	
+
 	public BoardVo getArticle(int no) {
 		return sqlSession.selectOne("board.getArticle", no);
 	}
-	
+
+	public void modify(BoardVo boardVo) {
+		sqlSession.update("board.modify", boardVo);
+	}
+
 }

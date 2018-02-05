@@ -20,6 +20,14 @@
 	]]>
 	</select>
 
+	<select id="modify" parameterType="com.javaex.vo.BoardVo">
+	<![CDATA[
+		UPDATE board
+		SET title = #{title}, content = #{content}
+		WHERE no = #{no}
+	]]>
+	</select>
+
 
 
 </mapper>

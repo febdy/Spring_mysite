@@ -13,12 +13,21 @@ public class BoardService {
 
 	@Autowired
 	private BoardDao boardDao;
-	
+
 	public List<BoardVo> getList() {
 		return boardDao.getList();
 	}
-	
+
 	public BoardVo getArticle(int no) {
 		return boardDao.getArticle(no);
+	}
+
+	public void modify(BoardVo newBoardVo) {
+		BoardVo boardVo = getArticle(newBoardVo.getNo());
+		boardVo.setTitle(newBoardVo.getTitle());
+		String newContent = newBoardVo.getContent().replace("\r\n", "<br>");
+		boardVo.setContent(newContent);
+
+		boardDao.modify(boardVo);
 	}
 }
