@@ -3,7 +3,8 @@
 
 <mapper namespace="user">
 
-	<select id="selectUserByEmailPw" parameterType="map" resultType="com.javaex.vo.UserVo">
+	<select id="selectUserByEmailPw" parameterType="map"
+		resultType="com.javaex.vo.UserVo">
 	<![CDATA[
 		SELECT no, name 
 		FROM users 
@@ -11,12 +12,20 @@
 		AND password = #{password}
         ]]>
 	</select>
-	
+
 	<select id="selectUserByNo" parameterType="int" resultType="com.javaex.vo.UserVo">
 	<![CDATA[
 		SELECT no, name, email, password, gender
 		FROM users 
 		WHERE no = #{no}
+        ]]>
+	</select>
+
+	<select id="selectUserByEmail" parameterType="String" resultType="com.javaex.vo.UserVo">
+	<![CDATA[
+		SELECT no, email
+		FROM users 
+		WHERE email = #{email}
         ]]>
 	</select>
 	
@@ -28,4 +37,10 @@
 	]]>
 	</update>
 
+	<insert id="join" parameterType="com.javaex.vo.UserVo">
+	<![CDATA[
+		INSERT INTO users
+		VALUES (seq_users_no.nextval, #{name}, #{email}, #{password}, #{gender})
+	]]>
+	</insert>
 </mapper>

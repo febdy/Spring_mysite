@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/mysite/assets/css/user.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 	<title>Join Page</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 			<div id="content">
 				<div id="user">
 	
-					<form id="join-form" name="joinForm" method="post" action="user">
+					<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath}/user/join">
 						
 						<label class="block-label" for="name">이름</label>
 						<input id="name" name="name" type="text" value="">
@@ -44,7 +44,6 @@
 							<label>서비스 약관에 동의합니다.</label>
 						</fieldset>
 						
-						<input type="hidden" name="a" value="join">
 						<input type="submit" value="가입하기">
 						
 					</form>

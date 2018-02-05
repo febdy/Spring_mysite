@@ -41,6 +41,7 @@ public class UserController {
 	@RequestMapping("/user/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("authUser");
+		session.invalidate();
 
 		return "redirect:/main";
 	}
@@ -62,4 +63,27 @@ public class UserController {
 		
 		return "redirect:/main";
 	}
+
+	@RequestMapping("user/joinform")
+	public String joinform() {
+		
+		return "user/joinform";
+	}
+	
+	@RequestMapping("user/join")
+	public String join(@ModelAttribute UserVo userVo) {
+		int joinStatus = userService.join(userVo);
+		
+		if(joinStatus == 1)
+			return "user/joinsuccess";
+		else
+			return "redirect:/user/joinform";
+	}
+	
+	@RequestMapping("user/joinsuccess")
+	public String joinSuccess() {
+		
+		return "user/joinsuccess";
+	}
+
 }

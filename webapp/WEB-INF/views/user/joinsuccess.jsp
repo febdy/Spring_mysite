@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/mysite/assets/css/user.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 	<title>Join Success</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
 					<p class="jr-success">
 						회원가입을 축하합니다.
 						<br><br>
-						<a href="user?a=loginform">로그인하기</a>
+						<a href="${pageContext.request.contextPath}/user/loginform">로그인하기</a>
 					</p>
 					
 				</div><!-- /user -->

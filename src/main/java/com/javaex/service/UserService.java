@@ -21,6 +21,11 @@ public class UserService {
 		
 		return userDao.getUser(no);
 	}
+	
+	public UserVo getUser(String email) {
+
+		return userDao.getUser(email);
+	}
 
 	public void modify(UserVo authUser, UserVo newUserVo) {
 		if(authUser.getNo() == newUserVo.getNo()) {
@@ -33,5 +38,13 @@ public class UserService {
 			
 			userDao.modify(userVo);
 		}
+	}
+	
+	public int join(UserVo userVo) {
+		
+		if(getUser(userVo.getEmail()) != null)
+			return 0;
+		else
+			return userDao.join(userVo);
 	}
 }
