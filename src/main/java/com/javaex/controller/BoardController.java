@@ -28,7 +28,7 @@ public class BoardController {
 
 	@RequestMapping("/board/view")
 	public String view(@RequestParam int no, Model model) {
-		BoardVo article = boardService.getArticle(no);
+		BoardVo article = boardService.view(no);
 		model.addAttribute("boardVo", article);
 		model.addAttribute("no", no);
 

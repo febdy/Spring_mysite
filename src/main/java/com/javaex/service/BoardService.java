@@ -21,6 +21,13 @@ public class BoardService {
 	public BoardVo getArticle(int no) {
 		return boardDao.getArticle(no);
 	}
+	
+	public BoardVo view(int no) {
+		BoardVo boardVo = getArticle(no);
+		boardDao.updateHit(no);
+		
+		return boardVo;
+	}
 
 	public void modify(BoardVo newBoardVo) {
 		BoardVo boardVo = getArticle(newBoardVo.getNo());

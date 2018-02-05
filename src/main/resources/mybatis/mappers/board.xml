@@ -20,6 +20,14 @@
 	]]>
 	</select>
 
+	<select id="updateHit" parameterType="int">
+	<![CDATA[
+		UPDATE board
+		SET hit = hit + 1 
+		WHERE no = #{no}
+	]]>
+	</select>
+	
 	<select id="modify" parameterType="com.javaex.vo.BoardVo">
 	<![CDATA[
 		UPDATE board
