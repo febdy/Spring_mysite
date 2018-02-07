@@ -64,12 +64,17 @@
 	$("#btn").on("click", function(){
 		var email = $("#email").val();
 		
-		$.ajax({		
+		var userVo = {
+				email: email,
+				password: 1111				
+		}
+		
+		$.ajax({
 			url : "${pageContext.request.contextPath}/user/api/emailcheck",		
 			type : "post",
-		//	contentType : "application/json",
-			data : {email: email}, //jsp->servlet 줄 때
-			dataType : "json", // servlet->jsp 받을 때
+			contentType : "application/json",
+			data : JSON.stringify(userVo), //jsp->servlet 줄 때
+			//dataType : "json", // servlet->jsp 받을 때
 
 			success : function(result){
 				if(result == true)

@@ -25,4 +25,8 @@ public class GuestbookService {
 	public void delete(int no, String password) {
 		guestbookDao.delete(no, password);
 	}
+
+	public List<GuestVo> selectListByPage(int page) {
+		return guestbookDao.selectListByPage(page);
+	}
 }

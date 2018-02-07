@@ -9,19 +9,33 @@
 		ORDER BY no
 	]]>
 	</select>
-	
+
 	<insert id="add" parameterType="com.javaex.vo.GuestVo">
 	<![CDATA[
 		INSERT INTO guestbook
 		VALUES (seq_users_no.nextval, #{name}, #{password}, #{content}, sysdate)
 	]]>
 	</insert>
-	
+
 	<delete id="delete" parameterType="map">
 	<![CDATA[
 		DELETE FROM guestbook
 		WHERE no = #{no} AND password = #{password}
 	]]>
 	</delete>
-	
+
+	<select id="selectListByPage" parameterType="int" resultType="com.javaex.vo.GuestVo">
+	<![CDATA[
+			SELECT no, name, password, content, reg_date "date"
+			FROM(SELECT rownum rn, no, name, password, content, reg_date
+			     FROM (SELECT no, name, password, content, reg_date
+			           FROM guestbook
+			           ORDER BY reg_date DESC)
+			     ORDER BY rn ASC)
+			WHERE (#{page} - 1) * 5 < rn
+			AND rn <= #{page} * 5
+	]]>
+	</select>
+
+
 </mapper>

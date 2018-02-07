@@ -31,4 +31,8 @@ public class GuestbookDao {
 
 		sqlSession.delete("guestbook.delete", map);
 	}
+
+	public List<GuestVo> selectListByPage(int page) {
+		return sqlSession.selectList("guestbook.selectListByPage", page);
+	}
 }
