@@ -27,6 +27,7 @@ public class BoardController {
 			page = 1;
 
 		List<BoardVo> bList = boardService.getList(page);
+
 		int maxPageNum = boardService.getMaxPageNum();
 
 		model.addAttribute("bList", bList);

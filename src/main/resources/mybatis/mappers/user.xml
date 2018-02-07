@@ -23,7 +23,7 @@
 
 	<select id="selectUserByEmail" parameterType="String" resultType="com.javaex.vo.UserVo">
 	<![CDATA[
-		SELECT no, email
+		SELECT no, name, email, gender
 		FROM users 
 		WHERE email = #{email}
         ]]>

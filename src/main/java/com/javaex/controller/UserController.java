@@ -79,11 +79,5 @@ public class UserController {
 		else
 			return "redirect:/user/joinform";
 	}
-	
-	@RequestMapping("user/joinsuccess")
-	public String joinSuccess() {
-		
-		return "user/joinsuccess";
-	}
 
 }
