@@ -35,4 +35,8 @@ public class GuestbookDao {
 	public List<GuestVo> selectListByPage(int page) {
 		return sqlSession.selectList("guestbook.selectListByPage", page);
 	}
+
+	public String getDate(GuestVo guestVo) {
+		return sqlSession.selectOne("guestbook.getDate", guestVo.getNo());
+	}
 }

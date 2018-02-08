@@ -20,6 +20,8 @@ public class GuestbookService {
 
 	public void add(GuestVo guestVo) {
 		guestbookDao.add(guestVo);
+		String date = guestbookDao.getDate(guestVo);
+		guestVo.setDate(date);
 	}
 
 	public void delete(int no, String password) {

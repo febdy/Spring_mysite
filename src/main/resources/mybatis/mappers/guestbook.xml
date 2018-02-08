@@ -6,15 +6,19 @@
 	<![CDATA[
 		SELECT no, name, password, content, reg_date "date"
 		FROM guestbook 
-		ORDER BY no
+		ORDER BY no DESC;
 	]]>
 	</select>
 
 	<insert id="add" parameterType="com.javaex.vo.GuestVo">
-	<![CDATA[
-		INSERT INTO guestbook
-		VALUES (seq_users_no.nextval, #{name}, #{password}, #{content}, sysdate)
-	]]>
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT
+			seq_guestbook_no.nextval FROM dual
+		</selectKey>
+		<![CDATA[
+			INSERT INTO guestbook
+			VALUES (#{no}, #{name}, #{password}, #{content}, sysdate)
+		]]>
 	</insert>
 
 	<delete id="delete" parameterType="map">
@@ -24,18 +28,26 @@
 	]]>
 	</delete>
 
-	<select id="selectListByPage" parameterType="int" resultType="com.javaex.vo.GuestVo">
+	<select id="selectListByPage" parameterType="int"
+		resultType="com.javaex.vo.GuestVo">
 	<![CDATA[
 			SELECT no, name, password, content, reg_date "date"
 			FROM(SELECT rownum rn, no, name, password, content, reg_date
-			     FROM (SELECT no, name, password, content, reg_date
+			     FROM (SELECT no, name, password, content, to_char(reg_date, 'YY-MM-DD HH:MM') reg_date
 			           FROM guestbook
-			           ORDER BY reg_date DESC)
+			           ORDER BY reg_date DESC, no DESC)
 			     ORDER BY rn ASC)
 			WHERE (#{page} - 1) * 5 < rn
 			AND rn <= #{page} * 5
 	]]>
 	</select>
 
+	<select id="getDate" parameterType="int" resultType="String">
+	<![CDATA[
+			SELECT to_char(reg_date, 'YY-MM-DD HH:MM') "date"
+			FROM guestbook
+			WHERE no = #{no}
+	]]>
+	</select>
 
 </mapper>
