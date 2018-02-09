@@ -51,7 +51,7 @@
 
 					<ul id="listArea"></ul>
 					
-					<input type="button" id="btnNext" value="다음글 5개 가져오기">
+					<!-- <input type="button" id="btnNext" value="다음글 5개 가져오기"> -->
 					
 				</div><!-- /guestbook -->
 			</div><!-- /content -->
@@ -146,12 +146,18 @@
 		$("#modalPassword").val("");
 	});
 	
-	$("#btnNext").on("click", function(){ // load next page
+/* 	$("#btnNext").on("click", function(){ // load next page
 		page += 1;
 		
 		fetchList(page);
-	});
+	}); */
 	
+	$(window).on("scroll", function(){
+		if($(window).scrollTop()+10 > $(document).height()-$(window).height()){
+			page += 1;
+			fetchList(page);
+		}
+	});
 	
 	function fetchList(page){
 		$.ajax({
