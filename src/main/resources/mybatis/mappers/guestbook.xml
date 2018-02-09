@@ -6,7 +6,7 @@
 	<![CDATA[
 		SELECT no, name, password, content, reg_date "date"
 		FROM guestbook 
-		ORDER BY no DESC;
+		ORDER BY no DESC
 	]]>
 	</select>
 

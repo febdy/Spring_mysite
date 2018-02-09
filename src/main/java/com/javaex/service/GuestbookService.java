@@ -24,8 +24,8 @@ public class GuestbookService {
 		guestVo.setDate(date);
 	}
 
-	public void delete(int no, String password) {
-		guestbookDao.delete(no, password);
+	public int delete(int no, String password) {
+		return guestbookDao.delete(no, password);
 	}
 
 	public List<GuestVo> selectListByPage(int page) {

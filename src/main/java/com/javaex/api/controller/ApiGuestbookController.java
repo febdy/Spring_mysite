@@ -34,4 +34,13 @@ public class ApiGuestbookController {
 
 		return guestVo;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/guestbook/api/delete", method = RequestMethod.POST)
+	public int apiDelete(@RequestParam int no, @RequestParam String password) {
+		if (guestbookService.delete(no, password) == 1)
+			return 1;
+		else
+			return 0;
+	}
 }

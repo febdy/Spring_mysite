@@ -24,12 +24,12 @@ public class GuestbookDao {
 		sqlSession.insert("guestbook.add", guestVo);
 	}
 
-	public void delete(int no, String password) {
+	public int delete(int no, String password) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("no", no);
 		map.put("password", password);
 
-		sqlSession.delete("guestbook.delete", map);
+		return sqlSession.delete("guestbook.delete", map);
 	}
 
 	public List<GuestVo> selectListByPage(int page) {

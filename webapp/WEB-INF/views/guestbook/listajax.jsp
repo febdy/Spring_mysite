@@ -48,11 +48,8 @@
 							<td colspan=4 align=right><input type="button" id="btnAdd" VALUE=" 확인 " /></td>
 						</tr>
 					</table>
-					<input id='btnDel' type="button" value="삭제버튼">
 
-					<ul id="listArea">
-					
-					</ul>
+					<ul id="listArea"></ul>
 					
 					<input type="button" id="btnNext" value="다음글 5개 가져오기">
 					
@@ -80,7 +77,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-danger" id="btn_del">삭제</button>
+					<button type="button" class="btn btn-danger" id="btn_del" data-dismiss="modal">삭제</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -97,7 +94,7 @@
 		fetchList(page);
 	});
 	
-	$("#btnAdd").on("click", function(){
+	$("#btnAdd").on("click", function(){ // add
 		var boardVo = {
 			'name' : $("input[name=name]").val(),
 			'password' : $("input[name=password]").val(),
@@ -117,18 +114,44 @@
 				console.error(status + " : " + error);
 			}
 		});
+	
+		$("[name=name]").val("");
+		$("[name=password]").val("");
+		$(".content.content").val("");
 	});
 	
-	$("#btnNext").on("click", function(){
+	$("ul").on("click", ".delete", function(){ // delete
+		$("#del-pop").modal();
+		$("#modalNo").val(this.id);		
+	});
+	
+	$("#btn_del").on("click", function(){
+		var modalNoVal = $("#modalNo").val();
+		var modalPasswordVal = $("#modalPassword").val();
+			
+		$.ajax({
+			url : "${pageContext.request.contextPath}/guestbook/api/delete",
+			type : "post",
+			data : {no : modalNoVal, password : modalPasswordVal},
+			dataType : "json",
+			success : function(result){
+				if(result == 1)
+					$("#g" + modalNoVal).remove();
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		$("#modalPassword").val("");
+	});
+	
+	$("#btnNext").on("click", function(){ // load next page
 		page += 1;
 		
 		fetchList(page);
 	});
 	
-	$("#btnDel").on("click", function(){
-		$("#del-pop").modal();
-		
-	});
 	
 	function fetchList(page){
 		$.ajax({
@@ -146,16 +169,16 @@
 			}
 		});
 	}
-	
+		
 	function render(guestVo, updown){
 		var str="";
-		str += "<li>";
+		str += "<li id='g"+ guestVo.no +"'>";
 		str += "	<table>";
 		str += "		<tr>";
 		str += "			<td>"+ guestVo.no +"</td>";
 		str += "			<td>"+ guestVo.name +"</td>";
 		str += "			<td>"+ guestVo.date +"</td>";
-		str += "			<td><a href='${pageContext.request.contextPath}/guestbook/deleteform?no=${gVo.no}'>삭제</a></td>";
+		str += "			<td><a class='delete' id='"+ guestVo.no +"'>삭제</a></td>";
 		str += "		</tr>";
 		str += "		<tr>";
 		str += "			<td colspan=4>"+ guestVo.content+"</td>";
