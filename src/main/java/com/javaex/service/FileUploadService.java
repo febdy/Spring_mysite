@@ -6,11 +6,18 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.dao.FileUploadDao;
+import com.javaex.vo.FileVo;
+
 @Service
 public class FileUploadService {
+	
+	@Autowired
+	private FileUploadDao fileUploadDao;
 
 	public String restore(MultipartFile file) {
 		// 파일 정보 수집
@@ -21,6 +28,10 @@ public class FileUploadService {
 		String filePath = saveDir + "\\" + saveName; // 파일위치(패스)
 		long fileSize = -file.getSize(); // 사이즈
 
+		FileVo fileVo = new FileVo(0, orgName, exName, saveName, saveDir, filePath, fileSize, "", 2, "");
+
+		fileUploadDao.insert(fileVo);
+		
 		// 파일 카피
 		try {
 			byte[] fileData = file.getBytes();

@@ -14,7 +14,7 @@ import com.javaex.service.FileUploadService;
 public class FileUploadController {
 
 	@Autowired
-	FileUploadService fileUploadService;
+	private FileUploadService fileUploadService;
 
 	@RequestMapping("/form")
 	public String form() {
