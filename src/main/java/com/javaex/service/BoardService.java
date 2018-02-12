@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javaex.dao.BoardDao;
 import com.javaex.vo.BoardVo;
@@ -37,6 +38,7 @@ public class BoardService {
 		return boardDao.getArticle(no);
 	}
 
+	@Transactional
 	public BoardVo view(int no) {
 		BoardVo boardVo = getArticle(no);
 		boardDao.updateHit(no);
