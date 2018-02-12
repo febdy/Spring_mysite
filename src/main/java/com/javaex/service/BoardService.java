@@ -40,8 +40,8 @@ public class BoardService {
 
 	@Transactional
 	public BoardVo view(int no) {
-		BoardVo boardVo = getArticle(no);
 		boardDao.updateHit(no);
+		BoardVo boardVo = getArticle(no);
 
 		return boardVo;
 	}
